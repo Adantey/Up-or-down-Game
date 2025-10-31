@@ -1,0 +1,47 @@
+import art
+import game_data
+import random
+
+score_count = 0
+def predict_celebrity(list_of_celebrities):
+     return random.choice(list_of_celebrities)
+
+def comparison(a,b,end_playing):
+    global score_count
+    print(f"Compare A: a {a["name"]} from {a["country"]}")
+    print(art.logo)
+    print(f"Against B: a {b["name"]} from {b["country"]}")
+    choice = input("who has more followers? enter 'A' or 'B' :\n").upper()
+    while choice not in ["A", "B"]:
+        choice = input("Invalid choice! Please type only 'A' or 'B':\n").upper()
+    if choice == "A":
+        if a["follower_count"] > b["follower_count"]:
+            score_count +=1
+            print(f"you're right!, Current score : {score_count}")
+            return False
+        else:
+            print(f"That's Wrong!, Current score : {score_count}")
+            return True
+    else:
+        if b["follower_count"] > a["follower_count"]:
+            score_count += 1
+            print(f"you're right!, Current score : {score_count}")
+            return False
+        else:
+            print(f"That's Wrong!, Current score : {score_count}")
+            return True
+
+
+
+
+
+end_game = False
+while not end_game:
+    first = predict_celebrity(game_data.data)
+    second = predict_celebrity(game_data.data)
+    end_game = comparison(first,second,end_game)
+
+
+
+
+
