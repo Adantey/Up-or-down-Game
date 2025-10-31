@@ -8,8 +8,9 @@ def predict_celebrity(list_of_celebrities):
 
 def comparison(a,b,end_playing):
     global score_count
-    print(f"Compare A: a {a["name"]} from {a["country"]}")
     print(art.logo)
+    print(f"Compare A: a {a["name"]} from {a["country"]}")
+    print(art.vs)
     print(f"Against B: a {b["name"]} from {b["country"]}")
     choice = input("who has more followers? enter 'A' or 'B' :\n").upper()
     while choice not in ["A", "B"]:
@@ -36,12 +37,11 @@ def comparison(a,b,end_playing):
 
 
 end_game = False
+second = predict_celebrity(game_data.data)
 while not end_game:
-    first = predict_celebrity(game_data.data)
+    first = second
     second = predict_celebrity(game_data.data)
+    if first == second:
+        second = predict_celebrity(game_data.data)
     end_game = comparison(first,second,end_game)
-
-
-
-
 
